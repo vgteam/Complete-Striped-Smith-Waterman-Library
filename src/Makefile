@@ -13,6 +13,16 @@ JAVA_LIB = libsswjni.so
 JAVA_INLCUDES = -I"$(JAVA_HOME)/include" -I"$(JAVA_HOME)/include/linux"
 JAVA_OBJ = ssw/Aligner.class ssw/Alignment.class ssw/Example.class
 
+
+ifeq ($(shell uname -s),Darwin)
+    # We may need libraries from Macports
+    # TODO: where does Homebrew keep libraries?
+else
+    # Not on OS X, we can have librt
+	CFLAGS+= -rdynamic
+endif
+
+
 .PHONY: all default java clean
 
 default: $(PROG) $(EXAMPLE) $(EXAMPLE_CPP) $(LIB) 
@@ -22,7 +32,7 @@ all: default java
 java: $(JAVA_JAR) $(JAVA_LIB)
 
 $(LIB): ssw.c ssw.h
-	$(CC) $(CFLAGS) -fPIC -shared -rdynamic -o $@ $<
+	$(CC) $(CFLAGS) -fPIC -shared -o $@ $<
 
 $(PROG): main.c kseq.h
 
