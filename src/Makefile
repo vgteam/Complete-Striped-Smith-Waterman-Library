@@ -15,10 +15,8 @@ JAVA_OBJ = ssw/Aligner.class ssw/Alignment.class ssw/Example.class
 
 
 ifeq ($(shell uname -s),Darwin)
-    # We may need libraries from Macports
-    # TODO: where does Homebrew keep libraries?
 else
-    # Not on OS X, we can have librt
+    # Not on OS X, we can use -rdynamic
 	CFLAGS+= -rdynamic
 endif
 
