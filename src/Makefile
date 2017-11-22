@@ -1,6 +1,6 @@
 CC = gcc
 CXX = g++
-CFLAGS := -Wall -pipe -O3
+CFLAGS := -Wall -pipe -O2
 CXXFLAGS := $(CFLAGS)
 LOBJS = ssw.o
 LCPPOBJS = ssw_cpp.o
@@ -41,7 +41,7 @@ $(JAVA_JAR): $(JAVA_OBJ)
 	jar cvfe $@ ssw.Example $^
 
 %.class: %.java
-	javac $<
+	javac -cp ./ $<
 	
 ssw.o: ssw.c ssw.h
 	$(CC) -c -o $@ $< $(CFLAGS)
