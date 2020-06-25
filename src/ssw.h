@@ -14,7 +14,8 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
-#include <emmintrin.h>
+#define SIMDE_ENABLE_NATIVE_ALIASES
+#include <simde/x86/sse2.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -185,4 +186,5 @@ static inline uint32_t cigar_int_to_len (uint32_t cigar_int) {
 }
 #endif	// __cplusplus
 
+#undef SIMDE_ENABLE_NATIVE_ALIASES
 #endif	// SSW_H
