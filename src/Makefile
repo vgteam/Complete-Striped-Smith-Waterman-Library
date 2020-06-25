@@ -1,5 +1,5 @@
-CC = gcc
-CXX = g++
+CC ?= gcc
+CXX ?= g++
 CFLAGS := -Wall -pipe -O2
 CXXFLAGS := $(CFLAGS)
 LOBJS = ssw.o
